@@ -1,159 +1,68 @@
-<！doctype html>
-<超文本标记语言>
-<头>
-    <标题>页面标题</标题>
-    <元字符集="UTF-8">
-    <元姓名="视口" 内容="宽度=设备宽度，初始比例=1">
-    <风格>
-*{
-            箱体尺寸:边框框;
-        }
- 
-        /*body样式*/
-身体{
-            字体系列:Arial;
-            边缘:0;
-        }
- 
-        /* 标题 */
-.header{
-            填充:80PX;
-            文本对齐:中心;
-            背景：#1abc9c；
-            颜色:白色的;
-        }
- 
-        /* 标题字体加大 */
-.header h1{
-            字体大小:40PX;
-        }
- 
-        /* 导航 */
-.navbar{
-            溢出:隐藏的;
-            背景色: #333;
-        }
- 
-        /* 导航栏样式 */
-.navbar a{
-            漂浮:左;
-            显示:块;
-            颜色:白色的;
-            文本对齐:中心;
-            填充:14PX 20PX;
-            文字装饰:没有一个;
-        }
- 
-        /* 右侧链接*/
-.navbar A.对{
-            漂浮:正确的;
-        }
- 
-        /* 鼠标移动到链接的颜色 */
-.navbar a：盘旋 {
-            背景色：#ddd；
-            颜色:黑色的;
-        }
- 
-        /* 列容器 */
-.row{
-            显示:-ms-Flexbox;/*IE10*/
-            显示:弯曲;
-            -ms-flex-wrap:包;/*IE10*/
-            柔性缠绕:包;
-        }
- 
-        /* 创建两个列 */
-        /* 边栏 */
-        .side {
-            -ms-flex: 30%; /* IE10 */
-            flex: 30%;
-            background-color: #f1f1f1;
-            padding: 20px;
-        }
- 
-        /* 主要的内容区域 */
-        .main {
-            -ms-flex: 70%; /* IE10 */
-            flex: 70%;
-            background-color: white;
-            padding: 20px;
-        }
- 
-        /* 测试图片 */
-        .fakeimg {
-            background-color: #aaa;
-            width: 100%;
-            padding: 20px;
-        }
- 
-        /* 底部 */
-        .footer {
-            padding: 20px;
-            text-align: center;
-            background: #ddd;
-        }
- 
-        /* 响应式布局 - 在屏幕设备宽度尺寸小于 700px 时, 让两栏上下堆叠显示 */
-        @media screen and (max-width: 700px) {
-            .row {
-                flex-direction: column;
-            }
-        }
- 
-        /* 响应式布局 - 在屏幕设备宽度尺寸小于 400px 时, 让导航栏目上下堆叠显示 */
-        @media screen and (max-width: 400px) {
-            .navbar a {
-                float: none;
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
- 
-<div class="header">
-    <h1>静态网页测试实例</h1>
-    <p>创建一个页面。</p>
-</div>
- 
-<div class="navbar">
-    <a href="#">链接</a>
-    <a href="#">链接</a>
-    <a href="#">链接</a>
-    <a href="#" class="right">链接</a>
-</div>
- 
-<div class="row">
-    <div class="side">
-        <h2>关于我</h2>
-        <h5>我的照片:</h5>
-        <div class="fakeimg" style="height:200px;">这边插入图像</div>
-        <p>关于我的介绍..</p>
-        <h3>更多内容</h3>
-        <p>我的更多内容</p>
-        <div class="fakeimg" style="height:60px;">这边插入图像</div><br>
-        <div class="fakeimg" style="height:60px;">这边插入图像</div><br>
-        <div class="fakeimg" style="height:60px;">这边插入图像</div>
-    </div>
-    <div class="main">
-        <h2>标题</h2>
-        <h5>副标题</h5>
-        <div class="fakeimg" style="height:200px;">图像</div>
-        <p>一些文本..</p>
-        <p>自建网站，应用模板！！！</p>
-        <br>
-        <h2>标题</h2>
-        <h5>副标题</h5>
-        <div class="fakeimg" style="height:200px;">图像</div>
-        <p>一些文本..</p>
-        <p>自建网站，应用模板！！！</p>
-    </div>
-</div>
- 
-<div class="footer">
-    <h2>底部内容</h2>
-</div>
- 
-</body>
-    </html>
+login.php
+　<？PHP
+session_start()；
+//假设这里的$名称、$password、$student_id是从数据库中查询出来的
+$name="小明"；
+$password="123456"；
+$student_id="20190001"；
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+$input_name=$_POST["name"]；
+$input_password=$_POST["password"]；
+$input_student_id=$_POST["student_id"]；
+if($input_name==$name&&$input_password==$password&&$input_student_id==$student_id){
+$_SESSION["name"]=$name；
+$_SESSION["student_id"]=$student_id；
+header("Location:index.php")；
+出口()；
+}else{
+$error_message="用户名或密码或学号错误！"；
+}
+}
+?>
+　<！doctype html>
+　<超文本标记语言>
+　<头>
+　<元字符集="UTF-8">
+　<标题>用户登录</标题>
+　</头>
+　<身体>
+　<？PHP if(！empty($error_message))：？>
+　<p><？PHP echo$error_message；？></p>
+　<？PHP endif；？>
+　<形式方法="发布">
+　<标签为="名称">姓名：</标签>
+　<输入类型="文本" 姓名="名称" 身份标识="名称" 必需的-><溴>
+　<标签为="密码">密码：</标签>
+　<输入类型="密码" 姓名="密码" 身份标识="密码-d" 必需的><溴>
+　<标签为="student_id">学号：</标签>
+　<输入类型="文本" 姓名="student_id" 身份标识="student_id"
+必需的><溴>
+　<按钮类型="提交">登录</按钮>
+　</形式>
+　</身体>
+　</超文本标记语言>
+index.php
+　<？PHP
+session_start()；
+if(！isset($_SESSION["name"])||！isset($_SESSION["stude-nt_id"])){
+header("Location:login.php")；
+出口()；
+}
+if(isset($_POST["注销"])){
+session_destroy()；
+header("Location:login.php")；
+出口()；
+}
+?>
+　<！doctype html>
+　<超文本标记语言>
+　<头>
+　<元字符集="UTF-8">
+　<标题>已登录</标题>
+　</头>
+　<身体>
+　<p>欢迎，<？PHP echo$_SESSION["name"]；？>！</p>
+　<p>您的学号是：<？PHP echo$_SESSION["student_id"]；？></p>
+　<形式方法="发布">
+　<按钮类型="提交" 姓名="注销" 价值="真">退出登录</按钮>
+</形式></身体></超文本标记语言>
